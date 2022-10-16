@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TrainingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,6 +26,14 @@ class Training
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?SubProgram $subProgram = null;
+
+    #[ORM\OneToMany(mappedBy: 'training', targetEntity: TrainingSerie::class, orphanRemoval: true)]
+    private Collection $trainingSeries;
+
+    public function __construct()
+    {
+        $this->trainingSeries = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -62,6 +72,36 @@ class Training
     public function setSubProgram(?SubProgram $subProgram): self
     {
         $this->subProgram = $subProgram;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TrainingSerie>
+     */
+    public function getTrainingSeries(): Collection
+    {
+        return $this->trainingSeries;
+    }
+
+    public function addTrainingSeries(TrainingSerie $trainingSeries): self
+    {
+        if (!$this->trainingSeries->contains($trainingSeries)) {
+            $this->trainingSeries->add($trainingSeries);
+            $trainingSeries->setTraining($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrainingSeries(TrainingSerie $trainingSeries): self
+    {
+        if ($this->trainingSeries->removeElement($trainingSeries)) {
+            // set the owning side to null (unless already changed)
+            if ($trainingSeries->getTraining() === $this) {
+                $trainingSeries->setTraining(null);
+            }
+        }
 
         return $this;
     }
