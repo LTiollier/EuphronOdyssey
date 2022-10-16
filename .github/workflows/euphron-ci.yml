@@ -1,0 +1,69 @@
+name: Euphron Odyssey CI
+on: [ push ]
+jobs:
+  symfony:
+    name: Symfony 6.1 (PHP ${{ matrix.php-versions }})
+    runs-on: ubuntu-20.04
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '8.1' ]
+    steps:
+      # —— Setup GitHub actions 🐙 —————————————————————————————————————————————
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP, extensions and composer with shivammathur/setup-php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, mbstring
+        env:
+          update: true
+
+      ## —— Yarn 🐱 ————————————————————————————————————————————————————————————
+#      - name: Yarn install
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: '16'
+#
+#      - run: yarn
+#
+#      - name: Yarn build
+#        run: yarn run encore production
+
+      # —— Composer 🧙‍️ —————————————————————————————————————————————————————————
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies + Migrations
+        run: make install
+
+      # —— Symfony 🎵 ——————————————————————————————————————————————————————————
+      - name: Check the Symfony console
+        run: |
+          bin/console about
+
+      ## —— Coding standards ✨ ————————————————————————————————————————————————
+      - name: Coding standards checks (php_codesniffer + php-cs-fixer)
+        run: make cs
+
+      ## —— Static analysis ✨ —————————————————————————————————————————————————
+      - name: Static analysis of PHP code (PHPStan)
+        run: make stan

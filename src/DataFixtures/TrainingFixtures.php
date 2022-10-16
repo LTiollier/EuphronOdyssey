@@ -2,7 +2,10 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\SubProgram;
 use App\Entity\Training;
+use App\Entity\User;
+use Carbon\CarbonInterface;
 use Carbon\CarbonPeriod;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -16,10 +19,14 @@ class TrainingFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $period = CarbonPeriod::create('2022-04-25', '2022-04-26');
+        /** @var User $testUser */
         $testUser = $this->getReference(UserFixtures::TEST_USER);
+        /** @var SubProgram $terminatorSubProgram */
         $terminatorSubProgram = $this->getReference(SubProgramFixtures::TERMINATOR_SUB_PROGRAM);
+        /** @var SubProgram $firstSubProgram */
         $firstSubProgram = $this->getReference(SubProgramFixtures::FIRST_SUB_PROGRAM);
 
+        /** @var CarbonInterface $date */
         foreach ($period as $date) {
             $training = new Training();
             $training->setDate($date);
@@ -41,7 +48,7 @@ class TrainingFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class,
-            SubProgramFixtures::class
+            SubProgramFixtures::class,
         ];
     }
 }

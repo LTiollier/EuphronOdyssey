@@ -25,7 +25,7 @@ class ExerciseFixtures extends Fixture
         self::E_EXERCISE,
         self::F_EXERCISE,
         self::G_EXERCISE,
-        self::K2_EXERCISE
+        self::K2_EXERCISE,
     ];
 
     public const DEVELOPPE_COUCHE_EXERCISE = 'developpe-couche-exercise';
@@ -35,7 +35,7 @@ class ExerciseFixtures extends Fixture
     public const MONDAY_EXERCISES = [
         self::DEVELOPPE_COUCHE_EXERCISE,
         self::TRACTION_EXERCISE,
-        self::PAPILLON_EXERCISE
+        self::PAPILLON_EXERCISE,
     ];
 
     public function load(ObjectManager $manager): void
@@ -54,6 +54,9 @@ class ExerciseFixtures extends Fixture
         $manager->flush();
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     private function getData(): array
     {
         return [

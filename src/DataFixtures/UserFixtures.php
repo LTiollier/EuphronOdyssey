@@ -20,16 +20,16 @@ class UserFixtures extends FakerFixture
         $user = $this->userRepository->create([
             'email' => 'test@example.com',
             'username' => 'test user',
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $this->addReference(self::TEST_USER, $user);
 
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 4; ++$i) {
             $this->userRepository->create([
                 'email' => $this->faker->unique()->email,
                 'username' => $this->faker->unique()->userName,
-                'password' => 'password'
+                'password' => 'password',
             ]);
         }
 

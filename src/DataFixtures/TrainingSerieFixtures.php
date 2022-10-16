@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Exercise;
+use App\Entity\Training;
 use App\Entity\TrainingSerie;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -12,7 +13,9 @@ class TrainingSerieFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
+        /** @var Training $mondayTraining */
         $mondayTraining = $this->getReference(TrainingFixtures::MONDAY_TRAINING_REFERENCE);
+        /** @var Training $tuesdayTraining */
         $tuesdayTraining = $this->getReference(TrainingFixtures::TUESDAY_TRAINING_REFERENCE);
 
         foreach (ExerciseFixtures::MONDAY_EXERCISES as $key) {
@@ -20,14 +23,14 @@ class TrainingSerieFixtures extends Fixture implements DependentFixtureInterface
             $exercise = $this->getReference($key);
             $max = rand(6, 30);
 
-            for ($serie = 1; $serie <= $exercise->getSeries(); $serie++) {
+            for ($serie = 1; $serie <= $exercise->getSeries(); ++$serie) {
                 $training = new TrainingSerie();
                 $training->setTraining($mondayTraining);
                 $training->setExercise($exercise);
                 $training->setSerie($serie);
                 $training->setResult($max);
                 $manager->persist($training);
-                $max--;
+                --$max;
             }
         }
 
@@ -36,14 +39,14 @@ class TrainingSerieFixtures extends Fixture implements DependentFixtureInterface
             $exercise = $this->getReference($key);
             $max = rand(6, 30);
 
-            for ($serie = 1; $serie <= $exercise->getSeries(); $serie++) {
+            for ($serie = 1; $serie <= $exercise->getSeries(); ++$serie) {
                 $training = new TrainingSerie();
                 $training->setTraining($tuesdayTraining);
                 $training->setExercise($exercise);
                 $training->setSerie($serie);
                 $training->setResult($max);
                 $manager->persist($training);
-                $max--;
+                --$max;
             }
         }
 
@@ -53,7 +56,7 @@ class TrainingSerieFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            TrainingFixtures::class
+            TrainingFixtures::class,
         ];
     }
 }

@@ -25,6 +25,9 @@ class ProgramFixtures extends Fixture
         }
     }
 
+    /**
+     * @return array<array<string, string>>
+     */
     private function getData(): array
     {
         return [

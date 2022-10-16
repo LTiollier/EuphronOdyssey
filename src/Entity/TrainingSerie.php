@@ -14,7 +14,7 @@ class TrainingSerie
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-    
+
     #[ORM\ManyToOne(inversedBy: 'trainingSeries')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Training $training = null;

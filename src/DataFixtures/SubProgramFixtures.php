@@ -28,22 +28,25 @@ class SubProgramFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     private function getData(): array
     {
         return [
             [
                 'name' => 'Premier Programme',
                 'program' => $this->getReference(ProgramFixtures::LAFAY_PROGRAM_REFERENCE),
-                'reference' => self::FIRST_SUB_PROGRAM
+                'reference' => self::FIRST_SUB_PROGRAM,
             ],
             [
                 'name' => 'Deuxième Programme',
-                'program' => $this->getReference(ProgramFixtures::LAFAY_PROGRAM_REFERENCE)
+                'program' => $this->getReference(ProgramFixtures::LAFAY_PROGRAM_REFERENCE),
             ],
             [
                 'name' => 'Terminator session',
                 'program' => $this->getReference(ProgramFixtures::BRUNO_PROGRAM_REFERENCE),
-                'reference' => self::TERMINATOR_SUB_PROGRAM
+                'reference' => self::TERMINATOR_SUB_PROGRAM,
             ],
         ];
     }
@@ -51,7 +54,7 @@ class SubProgramFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            ProgramFixtures::class
+            ProgramFixtures::class,
         ];
     }
 }

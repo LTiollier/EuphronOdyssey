@@ -1,0 +1,7 @@
+parameters:
+    paths:
+        - config
+        - src
+    level: 8
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: false
