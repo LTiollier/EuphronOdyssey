@@ -11,11 +11,14 @@ use Doctrine\ORM\Mapping as ORM;
 class TrainingSerie
 {
     #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+    
     #[ORM\ManyToOne(inversedBy: 'trainingSeries')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Training $training = null;
 
-    #[ORM\Id]
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Exercise $exercise = null;
@@ -25,6 +28,11 @@ class TrainingSerie
 
     #[ORM\Column(nullable: true)]
     private ?int $result = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getTraining(): ?Training
     {
