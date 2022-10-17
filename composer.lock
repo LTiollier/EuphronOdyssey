@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f8d08ecf46bc376416e4b7a4c3bd97f3",
+    "content-hash": "eb90e848eba1fb17da44cac718c3838e",
     "packages": [
         {
             "name": "api-platform/core",
@@ -2878,6 +2878,59 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.0"
             },
             "time": "2021-07-14T16:46:02+00:00"
+        },
+        {
+            "name": "rompetomp/inertia-bundle",
+            "version": "v2.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rompetomp/inertia-bundle.git",
+                "reference": "889a96e13ad40835d53e848a5c35263b49c519b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rompetomp/inertia-bundle/zipball/889a96e13ad40835d53e848a5c35263b49c519b6",
+                "reference": "889a96e13ad40835d53e848a5c35263b49c519b6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.3|^8",
+                "symfony/config": "^4.4|^5.1.7|^6.0",
+                "symfony/dependency-injection": "^4.4|^5.1.7|^6.0",
+                "symfony/http-client": "^4.4|^5.1.7|^6.1",
+                "symfony/http-kernel": "^4.4|^5.1.7|^6.0",
+                "twig/twig": "^2.12|^3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2",
+                "symfony/phpunit-bridge": "^4.4|^5.1.7|^6.0",
+                "symfony/property-access": "^5.1|^6.0",
+                "symfony/serializer": "^5.1|^6.0",
+                "symfony/var-dumper": "^4.4|^5.1.7|^6.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Rompetomp\\InertiaBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hannes Vermeire",
+                    "email": "hannesvermeire@gmail.com"
+                }
+            ],
+            "description": "A Symfony adapter for Inertia.js",
+            "support": {
+                "issues": "https://github.com/rompetomp/inertia-bundle/issues",
+                "source": "https://github.com/rompetomp/inertia-bundle/tree/v2.4.2"
+            },
+            "time": "2022-08-22T06:56:09+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -8101,6 +8154,79 @@
                 }
             ],
             "time": "2022-02-25T11:15:52+00:00"
+        },
+        {
+            "name": "symfony/webpack-encore-bundle",
+            "version": "v1.15.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/webpack-encore-bundle.git",
+                "reference": "718673b1e758533614190ae74d07305a72bc66a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/webpack-encore-bundle/zipball/718673b1e758533614190ae74d07305a72bc66a9",
+                "reference": "718673b1e758533614190ae74d07305a72bc66a9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3",
+                "symfony/asset": "^4.4 || ^5.0 || ^6.0",
+                "symfony/config": "^4.4 || ^5.0 || ^6.0",
+                "symfony/dependency-injection": "^4.4 || ^5.0 || ^6.0",
+                "symfony/deprecation-contracts": "^2.1 || ^3.0",
+                "symfony/http-kernel": "^4.4 || ^5.0 || ^6.0",
+                "symfony/polyfill-php80": "^1.25.0",
+                "symfony/service-contracts": "^1.0 || ^2.0 || ^3.0"
+            },
+            "require-dev": {
+                "symfony/framework-bundle": "^4.4 || ^5.0 || ^6.0",
+                "symfony/phpunit-bridge": "^5.3 || ^6.0",
+                "symfony/twig-bundle": "^4.4 || ^5.0 || ^6.0",
+                "symfony/web-link": "^4.4 || ^5.0 || ^6.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/webpack-encore",
+                    "url": "https://github.com/symfony/webpack-encore"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\WebpackEncoreBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Integration with your Symfony app & Webpack Encore!",
+            "support": {
+                "issues": "https://github.com/symfony/webpack-encore-bundle/issues",
+                "source": "https://github.com/symfony/webpack-encore-bundle/tree/v1.15.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-07-13T17:07:35+00:00"
         },
         {
             "name": "symfony/yaml",
