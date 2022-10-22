@@ -2,26 +2,23 @@
 
 namespace App\Controller;
 
-use Rompetomp\InertiaBundle\Service\InertiaInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class LoginController extends AbstractController
+class LoginController extends AbstractInertiaController
 {
     #[Route('/login', name: 'app_login')]
-    public function index(InertiaInterface $inertia, AuthenticationUtils $authenticationUtils): Response
+    public function index(AuthenticationUtils $authenticationUtils): Response
     {
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
+        /** @var ?User $currentUser */
+        $currentUser = $this->getUser();
 
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+        if (null !== $currentUser) {
+            return $this->redirectToRoute('app_dashboard');
+        }
 
-        return $inertia->render('Auth/Login', [
-            'last_username' => $lastUsername,
-            'error' => $error,
-        ]);
+        return $this->renderWithInertia('Auth/Login');
     }
 }

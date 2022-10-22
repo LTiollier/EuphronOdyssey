@@ -17,3 +17,4 @@
 - make reset (refresh database)
 - make cs (PhpCS fix)
 - make stan (PHPStan)
+- make start (launch server to localhost:8000)

@@ -14,8 +14,8 @@ import { useForm } from '@inertiajs/inertia-react'
 
 const Login = () => {
   const { data, setData, post, processing, errors } = useForm({
-    _username: '',
-    _password: '',
+    username: '',
+    password: '',
     remember: false,
   })
 
@@ -48,11 +48,11 @@ const Login = () => {
           fullWidth
           id="email"
           label="Email"
-          name="_username"
+          name="username"
           autoComplete="email"
-          onChange={e => setData('_username', e.target.value)}
-          error={!!errors._username}
-          helperText={errors._username}
+          onChange={e => setData('username', e.target.value)}
+          error={!!errors.username}
+          helperText={errors.username}
           autoFocus
         />
         <TextField
@@ -63,9 +63,9 @@ const Login = () => {
           label="Mot de passe"
           type="password"
           id="password"
-          onChange={e => setData('_password', e.target.value)}
-          error={!!errors._password}
-          helperText={errors._password}
+          onChange={e => setData('password', e.target.value)}
+          error={!!errors.password}
+          helperText={errors.password}
           autoComplete="current-password"
         />
         <FormControlLabel

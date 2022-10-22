@@ -25,3 +25,9 @@ cs:
 
 stan:
 	vendor/bin/phpstan --memory-limit=4G
+
+start:
+	symfony server:stop
+	symfony server:start -d
+	symfony open:local
+	yarn watch
